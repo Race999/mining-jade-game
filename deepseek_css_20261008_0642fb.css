@@ -1,0 +1,782 @@
+/* =========================================================
+   《挖矿暴富：开石出玉》 style.css
+   ========================================================= */
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  min-height: 100%;
+  background: #111827;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    "PingFang SC",
+    "Hiragino Sans GB",
+    "Microsoft YaHei",
+    sans-serif;
+  color: #1f2937;
+  background:
+    radial-gradient(circle at 50% 0%, #374151 0, #111827 45%, #0b1120 100%);
+  overscroll-behavior: none;
+}
+
+button {
+  font: inherit;
+  border: 0;
+  background: transparent;
+}
+
+button:active {
+  transform: scale(0.97);
+}
+
+/* =========================================================
+   APP
+   ========================================================= */
+
+#app { min-height: 100vh; }
+
+.game-container {
+  width: 100%;
+  max-width: 520px;
+  min-height: 100vh;
+  margin: 0 auto;
+  padding:
+    max(12px, env(safe-area-inset-top))
+    16px
+    max(24px, env(safe-area-inset-bottom));
+}
+
+/* =========================================================
+   顶部栏
+   ========================================================= */
+
+.top-bar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  min-height: 58px;
+  margin-bottom: 16px;
+  padding: 10px 14px;
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+
+  background: rgba(17, 24, 39, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  color: #fff;
+}
+
+.game-title {
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+
+.coins {
+  padding: 8px 12px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  font-size: 15px;
+  font-weight: 800;
+  color: #fbbf24;
+  white-space: nowrap;
+}
+
+/* =========================================================
+   页面
+   ========================================================= */
+
+.screen { display: none; animation: screenIn 0.25s ease; }
+.screen.active { display: block; }
+
+@keyframes screenIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.page-title {
+  margin: 8px 0 4px;
+  text-align: center;
+  font-size: 30px;
+  line-height: 1.2;
+  font-weight: 900;
+  color: #fff;
+}
+
+.page-subtitle {
+  margin: 0 0 18px;
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #9ca3af;
+}
+
+/* =========================================================
+   卡片
+   ========================================================= */
+
+.card {
+  margin-bottom: 14px;
+  padding: 18px;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 22px;
+
+  background: #fff;
+
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.14),
+    0 2px 6px rgba(0, 0, 0, 0.06);
+}
+
+/* =========================================================
+   数据统计
+   ========================================================= */
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.stat-card {
+  padding: 13px 8px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.08);
+  text-align: center;
+}
+
+.stat-label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+.stat-value {
+  display: block;
+  font-size: 19px;
+  font-weight: 900;
+  color: #fff;
+}
+
+/* =========================================================
+   空状态
+   ========================================================= */
+
+.empty-state {
+  padding: 24px 10px;
+  text-align: center;
+  color: #6b7280;
+}
+
+.empty-state .empty-icon {
+  margin-bottom: 8px;
+  font-size: 64px;
+}
+
+.empty-state p {
+  margin: 0 0 4px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #374151;
+}
+
+.empty-state small {
+  font-size: 13px;
+  color: #9ca3af;
+}
+
+/* =========================================================
+   原石卡片
+   ========================================================= */
+
+.stone-card { text-align: center; }
+
+.stone-icon {
+  margin: 4px auto 8px;
+  font-size: 68px;
+  filter: drop-shadow(0 8px 8px rgba(0, 0, 0, 0.12));
+}
+
+.stone-card h3 {
+  margin: 0 0 4px;
+  font-size: 21px;
+  font-weight: 900;
+  color: #111827;
+}
+
+.stone-card p {
+  margin: 0 0 3px;
+  font-size: 13px;
+  color: #9ca3af;
+}
+
+.stone-card strong {
+  display: block;
+  margin-bottom: 16px;
+  font-size: 24px;
+  font-weight: 900;
+  color: #059669;
+}
+
+.stone-actions {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 9px;
+}
+
+/* =========================================================
+   挖矿区域
+   ========================================================= */
+
+.mine-area {
+  padding: 22px 18px;
+  text-align: center;
+}
+
+.mine-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  width: 100%;
+  min-height: 100px;
+
+  border: 0;
+  border-radius: 22px;
+
+  background: linear-gradient(145deg, #f59e0b, #d97706);
+  color: #fff;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 8px 0 #92400e,
+    0 14px 25px rgba(217, 119, 6, 0.3);
+
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.mine-button:active {
+  transform: translateY(5px);
+  box-shadow:
+    0 3px 0 #92400e,
+    0 8px 16px rgba(217, 119, 6, 0.25);
+}
+
+.mine-button span { font-size: 40px; line-height: 1; }
+.mine-button b    { font-size: 25px; font-weight: 900; }
+
+.mine-hint {
+  margin-top: 15px;
+  font-size: 13px;
+  color: #9ca3af;
+}
+
+/* =========================================================
+   按钮
+   ========================================================= */
+
+.btn {
+  width: 100%;
+  min-height: 48px;
+
+  border: 0;
+  border-radius: 14px;
+
+  padding: 12px 16px;
+
+  font-size: 15px;
+  font-weight: 800;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.12s ease,
+    opacity 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.btn:disabled { opacity: 0.45; cursor: not-allowed; }
+
+.btn.primary {
+  color: #fff;
+  background: linear-gradient(135deg, #2563eb, #4f46e5);
+  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.25);
+}
+
+.btn.secondary {
+  color: #374151;
+  background: #f3f4f6;
+  border: 1px solid #e5e7eb;
+}
+
+.btn.special {
+  color: #fff;
+  background: linear-gradient(135deg, #8b5cf6, #ec4899);
+  box-shadow: 0 6px 16px rgba(139, 92, 246, 0.24);
+}
+
+.btn.danger {
+  margin-top: 14px;
+  color: #f87171;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(248, 113, 113, 0.3);
+}
+
+.big-btn { min-height: 56px; font-size: 18px; }
+
+.bottom-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+/* =========================================================
+   开石页面
+   ========================================================= */
+
+.opening-area { text-align: center; }
+
+.opening-area h2,
+.polishing-area h2 {
+  margin: 0 0 14px;
+  font-size: 20px;
+  font-weight: 900;
+  color: #111827;
+}
+
+#openingStoneVisual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 190px;
+  height: 190px;
+
+  margin: 10px auto 22px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle at 35% 30%,
+      #9ca3af,
+      #4b5563 48%,
+      #1f2937 100%
+    );
+
+  font-size: 88px;
+
+  box-shadow:
+    inset -16px -16px 25px rgba(0, 0, 0, 0.28),
+    inset 10px 10px 18px rgba(255, 255, 255, 0.12),
+    0 14px 30px rgba(0, 0, 0, 0.18);
+
+  user-select: none;
+  transition: filter 0.2s ease, transform 0.2s ease;
+}
+
+#openingStoneVisual[data-stage="1"] { filter: brightness(1.03); }
+#openingStoneVisual[data-stage="2"] { filter: brightness(1.08) contrast(1.05); }
+#openingStoneVisual[data-stage="3"] { filter: brightness(1.14) contrast(1.1); }
+#openingStoneVisual[data-stage="4"] { transform: scale(1.08); filter: brightness(1.25); }
+
+#openingStoneVisual.hit { animation: stoneHit 0.18s ease; }
+
+@keyframes stoneHit {
+  0%   { transform: translateX(0)    rotate(0); }
+  30%  { transform: translateX(-6px) rotate(-2deg); }
+  60%  { transform: translateX(6px)  rotate(2deg); }
+  100% { transform: translateX(0)    rotate(0); }
+}
+
+/* =========================================================
+   进度条
+   ========================================================= */
+
+.progress-wrap { margin: 0 0 20px; }
+
+.progress-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 8px;
+
+  font-size: 13px;
+  font-weight: 700;
+  color: #6b7280;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 12px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #e5e7eb;
+}
+
+.progress-fill {
+  width: 0;
+  height: 100%;
+
+  border-radius: inherit;
+  background: linear-gradient(90deg, #f59e0b, #ef4444);
+
+  transition: width 0.12s ease;
+}
+
+/* =========================================================
+   擦玉页面
+   ========================================================= */
+
+.polishing-area { text-align: center; }
+
+#polishingStoneVisual {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  width: min(78vw, 300px);
+  height: min(78vw, 300px);
+
+  margin: 10px auto 20px;
+
+  border-radius: 28px;
+
+  background:
+    radial-gradient(circle at 50% 40%, #f9fafb, #e5e7eb);
+
+  border: 2px dashed #d1d5db;
+
+  overflow: hidden;
+
+  /* 关键：禁用移动端默认手势 */
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  overscroll-behavior: contain;
+
+  cursor: grab;
+}
+
+#polishingStoneVisual:active { cursor: grabbing; }
+
+#polishingStoneVisual small {
+  font-size: 13px;
+  font-weight: 700;
+  color: #6b7280;
+}
+
+.stone-layer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 190px;
+  height: 150px;
+
+  border-radius: 45% 55% 50% 50%;
+
+  font-size: 92px;
+
+  user-select: none;
+  pointer-events: none;
+
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.stone-layer.stage-1 { filter: grayscale(0.25); }
+.stone-layer.stage-2 { filter: grayscale(0.05); transform: scale(1.02); }
+.stone-layer.stage-3 { filter: saturate(1.3);      transform: scale(1.04); }
+.stone-layer.stage-4 {
+  filter: saturate(1.7) drop-shadow(0 0 14px rgba(16, 185, 129, 0.45));
+  transform: scale(1.07);
+}
+.stone-layer.stage-5 {
+  filter: saturate(1.9) drop-shadow(0 0 22px rgba(59, 130, 246, 0.6));
+  transform: scale(1.1);
+}
+
+.polishing-tip {
+  margin: 12px 0 0;
+  font-size: 13px;
+  line-height: 1.6;
+  color: #6b7280;
+}
+
+/* =========================================================
+   结果页面
+   ========================================================= */
+
+.result-area {
+  padding: 30px 20px;
+  text-align: center;
+}
+
+.result-title {
+  margin-bottom: 16px;
+  font-size: 18px;
+  font-weight: 800;
+  color: #6b7280;
+}
+
+#resultIcon {
+  margin: 10px 0;
+  font-size: 86px;
+
+  animation: resultPop 0.55s cubic-bezier(0.17, 0.89, 0.32, 1.28);
+}
+
+@keyframes resultPop {
+  0%   { opacity: 0; transform: scale(0.3) rotate(-10deg); }
+  70%  { transform: scale(1.15) rotate(4deg); }
+  100% { opacity: 1; transform: scale(1) rotate(0); }
+}
+
+#resultName {
+  margin-top: 4px;
+  font-size: 28px;
+  font-weight: 900;
+  color: #111827;
+}
+
+#resultRarity {
+  display: inline-block;
+  margin: 10px 0;
+  padding: 5px 14px;
+  border-radius: 999px;
+
+  background: #f3f4f6;
+  font-size: 13px;
+  font-weight: 800;
+  color: #6b7280;
+}
+
+#resultRarity[data-rarity="uncommon"]  { background: #dbeafe; color: #2563eb; }
+#resultRarity[data-rarity="rare"]      { background: #dcfce7; color: #16a34a; }
+#resultRarity[data-rarity="epic"]      { background: #f3e8ff; color: #9333ea; }
+#resultRarity[data-rarity="legendary"] { background: #fef3c7; color: #d97706; }
+#resultRarity[data-rarity="mythic"] {
+  background: linear-gradient(135deg, #fbbf24, #ef4444);
+  color: #fff;
+}
+
+#resultValue {
+  margin: 8px 0 18px;
+  font-size: 32px;
+  font-weight: 900;
+  color: #059669;
+}
+
+#newCollection {
+  display: none;
+  margin-bottom: 18px;
+  padding: 10px;
+
+  border-radius: 12px;
+
+  background: #ecfdf5;
+  font-size: 14px;
+  font-weight: 800;
+  color: #059669;
+}
+
+/* =========================================================
+   图鉴
+   ========================================================= */
+
+.collection-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+.collection-header h2 {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 900;
+  color: #fff;
+}
+
+.collection-progress {
+  padding: 7px 11px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fbbf24;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+#collectionList {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.collection-card {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+
+  padding: 14px;
+
+  border-radius: 18px;
+
+  background: #fff;
+  border: 1px solid #e5e7eb;
+
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+.collection-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex: 0 0 55px;
+
+  width: 55px;
+  height: 55px;
+
+  border-radius: 16px;
+
+  background: #f3f4f6;
+
+  font-size: 31px;
+}
+
+.collection-info {
+  min-width: 0;
+  flex: 1;
+  text-align: left;
+}
+
+.collection-info strong {
+  display: block;
+  margin-bottom: 4px;
+
+  font-size: 16px;
+  font-weight: 900;
+  color: #111827;
+}
+
+.collection-info small {
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+.collection-card.locked { opacity: 0.62; }
+.collection-card.locked .collection-icon { filter: grayscale(1); }
+
+/* =========================================================
+   Toast
+   ========================================================= */
+
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 32px;
+  z-index: 9999;
+
+  max-width: min(90vw, 400px);
+  padding: 12px 18px;
+
+  border-radius: 14px;
+
+  background: rgba(17, 24, 39, 0.95);
+  color: #fff;
+
+  font-size: 14px;
+  font-weight: 700;
+  text-align: center;
+
+  opacity: 0;
+  pointer-events: none;
+
+  transform: translate(-50%, 20px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+/* =========================================================
+   底部安全区域
+   ========================================================= */
+
+.safe-bottom { height: 10px; }
+
+/* =========================================================
+   小屏
+   ========================================================= */
+
+@media (max-width: 380px) {
+  .game-container { padding-left: 12px; padding-right: 12px; }
+  .page-title { font-size: 26px; }
+  .stats { gap: 7px; }
+  .stat-card { padding: 11px 5px; }
+  .stat-value { font-size: 17px; }
+  .mine-button { min-height: 88px; }
+  .mine-button span { font-size: 34px; }
+  .mine-button b { font-size: 22px; }
+  #openingStoneVisual { width: 165px; height: 165px; font-size: 75px; }
+  .stone-layer { font-size: 78px; }
+}
+
+/* =========================================================
+   平板 / 桌面
+   ========================================================= */
+
+@media (min-width: 700px) {
+  .game-container { padding-top: 24px; }
+  .stone-actions { grid-template-columns: repeat(3, 1fr); }
+  .mine-button { min-height: 120px; }
+  .mine-button span { font-size: 48px; }
+  .mine-button b { font-size: 28px; }
+}
+
+/* =========================================================
+   减少动画
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

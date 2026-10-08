@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+  >
+  <meta name="theme-color" content="#111827">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <title>挖矿暴富：开石出玉</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+
+<div id="app">
+  <main class="game-container">
+
+    <!-- 顶部 -->
+    <header class="top-bar">
+      <div class="game-title">⛏️ 挖矿暴富</div>
+      <div class="coins">💰 ¥<span id="coins">1,000</span></div>
+    </header>
+
+
+    <!-- ================= 游戏主页 ================= -->
+    <section id="game" class="screen active">
+
+      <h1 class="page-title">开石出玉</h1>
+      <p class="page-subtitle">挖得越深，越容易遇到好东西</p>
+
+      <div class="stats">
+        <div class="stat-card">
+          <span class="stat-label">挖掘深度</span>
+          <span id="depth" class="stat-value">0m</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">矿镐等级</span>
+          <span id="pickaxeLevel" class="stat-value">1</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">已挖次数</span>
+          <span id="totalMined" class="stat-value">0</span>
+        </div>
+      </div>
+
+      <!-- 当前原石 -->
+      <div class="card">
+        <div id="currentStone"></div>
+      </div>
+
+      <!-- 挖矿 -->
+      <div class="card mine-area">
+        <button
+          id="mineBtn"
+          class="mine-button"
+          data-action="mine"
+          type="button"
+        >
+          <span>⛏️</span>
+          <b>挖矿</b>
+        </button>
+        <div class="mine-hint">每次挖矿都有机会发现原石</div>
+      </div>
+
+      <!-- 底部功能 -->
+      <div class="bottom-actions">
+        <button
+          id="collectionBtn"
+          class="btn secondary"
+          data-action="collection"
+          type="button"
+        >
+          📖 图鉴 <span id="collectionCount">0/7</span>
+        </button>
+
+        <button
+          id="upgradePickaxeBtn"
+          class="btn special"
+          data-action="upgrade"
+          type="button"
+        >
+          ⚒️ 升级矿镐
+        </button>
+      </div>
+
+      <button
+        id="resetGameBtn"
+        class="btn danger"
+        data-action="reset"
+        type="button"
+      >
+        🗑️ 重置游戏
+      </button>
+
+    </section>
+
+
+    <!-- ================= 开石 ================= -->
+    <section id="opening" class="screen">
+
+      <h1 class="page-title">🔨 开石</h1>
+      <p class="page-subtitle">一锤一锤揭开原石内部</p>
+
+      <div class="card opening-area">
+
+        <h2 id="openingStoneName">原石</h2>
+
+        <div id="openingStoneVisual" data-stage="0">🪨</div>
+
+        <div class="progress-wrap">
+          <div class="progress-info">
+            <span>开石进度</span>
+            <span id="openingProgress">0%</span>
+          </div>
+          <div class="progress-bar">
+            <div id="openingProgressBar" class="progress-fill"></div>
+          </div>
+        </div>
+
+        <button
+          id="hitStoneBtn"
+          class="btn primary big-btn"
+          data-action="hit"
+          type="button"
+        >
+          🔨 敲一下
+        </button>
+
+      </div>
+
+      <button class="btn secondary" data-action="back" type="button">
+        ← 返回
+      </button>
+
+    </section>
+
+
+    <!-- ================= 擦玉 ================= -->
+    <section id="polishing" class="screen">
+
+      <h1 class="page-title">✨ 擦玉</h1>
+      <p class="page-subtitle">按住原石来回移动手指</p>
+
+      <div class="card polishing-area">
+
+        <h2 id="polishingStoneName">原石</h2>
+
+        <!-- 移动端核心交互区 -->
+        <div id="polishingStoneVisual">
+          <div class="stone-layer stage-1">🪨</div>
+        </div>
+
+        <div class="progress-wrap">
+          <div class="progress-info">
+            <span>擦玉进度</span>
+            <span id="polishingProgress">0%</span>
+          </div>
+          <div class="progress-bar">
+            <div id="polishingProgressBar" class="progress-fill"></div>
+          </div>
+        </div>
+
+        <p class="polishing-tip">👆 按住原石并来回移动手指</p>
+
+      </div>
+
+      <button class="btn secondary" data-action="back" type="button">
+        ← 返回
+      </button>
+
+    </section>
+
+
+    <!-- ================= 结果 ================= -->
+    <section id="result" class="screen">
+
+      <div class="card result-area">
+
+        <div class="result-title">🎉 开石结果</div>
+
+        <div id="resultIcon">💎</div>
+        <div id="resultName">翡翠</div>
+        <div id="resultRarity" data-rarity="epic">史诗</div>
+        <div id="resultValue">¥1,000</div>
+        <div id="newCollection">📖 新图鉴解锁！</div>
+
+        <button
+          class="btn primary big-btn"
+          data-action="sellResult"
+          type="button"
+        >
+          💰 出售
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= 图鉴 ================= -->
+    <section id="collection" class="screen">
+
+      <div class="collection-header">
+        <h2>📖 玉石图鉴</h2>
+        <div id="collectionProgress" class="collection-progress">0/7</div>
+      </div>
+
+      <p class="page-subtitle">收集你发现过的珍稀玉石</p>
+
+      <div id="collectionList"></div>
+
+      <button class="btn secondary" data-action="back" type="button">
+        ← 返回矿场
+      </button>
+
+    </section>
+
+    <div class="safe-bottom"></div>
+  </main>
+</div>
+
+<!-- Toast 提示层 -->
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+<script src="./app.js"></script>
+</body>
+</html>
